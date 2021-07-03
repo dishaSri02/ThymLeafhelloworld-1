@@ -53,6 +53,15 @@ span.psw {
      width: 100%;
   }
 }
+footer {
+ position:absolute;
+  text-align: center;
+  padding: 3px;
+  bottom: 0;
+  width: 100%;
+  background-color: DarkSalmon;
+  color: white;
+}
 </style>
 </head>
 <body>
@@ -64,7 +73,7 @@ span.psw {
     <input type="email" placeholder="E-mail"  name="email" required autofocus>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" id="psw" placeholder="password"  name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  required autofocus>
+    <input type="password" id="psw"  placeholder="password"  name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  required autofocus>
 
         
     <button type="submit">Login</button>
@@ -78,20 +87,10 @@ span.psw {
   </div>
 </form>
 </div>
-
-      <div id=“message”>
-
-        <h3>Password must contain the following:</h3>
-
-        <p id=“letter” class=“invalid”>A <b>lowercase</b> letter</p>
-
-        <p id=“capital” class=“invalid”>A <b>capital (uppercase)</b> letter</p>
-
-        <p id=“number” class=“invalid”>A <b>number</b></p>
-
-        <p id=“length” class=“invalid”>Minimum <b>16 characters</b></p>
-
-      </div>
+    <footer>
+  <p>@copyright</p>
+  <div id="clock"></div>
+</footer>
   
 <script>
 var myInput = document.getElementById("psw");
@@ -151,6 +150,31 @@ myInput.onkeyup = function() {
     length.classList.add("invalid");
   }
 }
+
+
+function currentTime() {
+  var date = new Date(); /* creating object of Date class */
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  hour = updateTime(hour);
+  min = updateTime(min);
+  sec = updateTime(sec);
+  document.getElementById("clock").innerText = hour + " : " + min + " : " + sec; /* adding time to the div */
+  var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
+}
+
+function updateTime(k) {
+  if (k < 10) {
+    return "0" + k;
+  }
+  else {
+    return k;
+  }
+}
+
+currentTime(); 
+
 </script>
 
 
